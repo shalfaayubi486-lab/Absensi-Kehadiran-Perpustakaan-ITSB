@@ -19,7 +19,7 @@ const Landing = () => {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
               <span className="text-muted-foreground">Powered by</span>
-              <span className="text-foreground">face-api.js + Lovable Cloud</span>
+              <span className="text-foreground">Real Time Absensi</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-semibold leading-[0.95] tracking-tight">
