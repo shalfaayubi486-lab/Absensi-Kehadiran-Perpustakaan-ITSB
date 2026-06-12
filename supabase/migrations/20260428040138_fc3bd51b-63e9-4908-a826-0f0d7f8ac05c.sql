@@ -1,0 +1,3 @@
+ALTER TABLE public.users
+  ADD COLUMN IF NOT EXISTS program_studi TEXT,
+  ADD COLUMN IF NOT EXISTS angkatan TEXT;

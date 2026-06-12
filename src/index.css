@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system — calm blue & white, editorial. All HSL. */
+
+@layer base {
+  :root {
+    --background: 210 40% 99%;
+    --foreground: 222 47% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 12%;
+
+    --primary: 217 85% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 212 95% 68%;
+
+    --secondary: 214 40% 96%;
+    --secondary-foreground: 222 47% 12%;
+
+    --muted: 214 30% 95%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 212 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 152 55% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 30% 90%;
+    --input: 214 30% 92%;
+    --ring: 217 85% 50%;
+
+    --radius: 1rem;
+
+    --shadow-soft: 0 1px 2px hsl(217 50% 30% / 0.06), 0 12px 32px -12px hsl(217 50% 30% / 0.16);
+    --shadow-glow: 0 0 40px -8px hsl(212 95% 60% / 0.40);
+    --gradient-mesh: radial-gradient(at 20% 0%, hsl(212 95% 70% / 0.18) 0px, transparent 50%),
+                     radial-gradient(at 80% 30%, hsl(217 85% 55% / 0.10) 0px, transparent 50%),
+                     radial-gradient(at 50% 100%, hsl(200 90% 75% / 0.10) 0px, transparent 50%);
+    --gradient-primary: linear-gradient(135deg, hsl(217 85% 50%), hsl(212 95% 62%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.9), hsl(210 40% 99% / 0.7));
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 12%;
+    --sidebar-primary: 217 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 40% 96%;
+    --sidebar-accent-foreground: 222 47% 12%;
+    --sidebar-border: 214 30% 90%;
+    --sidebar-ring: 217 85% 50%;
+  }
+
+  .dark {
+    /* single light theme */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+  }
+  .font-serif-display {
+    font-family: 'Instrument Serif', serif;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .font-mono-tight {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-mesh { background-image: var(--gradient-mesh); }
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .glass {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid hsl(214 30% 88% / 0.9);
+  }
+  .glass-strong {
+    background: hsl(0 0% 100% / 0.88);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid hsl(214 30% 86% / 0.9);
+  }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(217 85% 50%), hsl(212 95% 62%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(214 30% 88% / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(214 30% 88% / 0.5) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float { animation: float-slow 6s ease-in-out infinite; }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 hsl(217 85% 55% / 0.45); }
+    70% { box-shadow: 0 0 0 16px hsl(217 85% 55% / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(217 85% 55% / 0); }
+  }
+  .pulse-ring { animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  .animate-marquee-slow { animation: marquee 50s linear infinite; }
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+
+  /* Scroll reveal — set initial state, .is-visible toggled by IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.08); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+  .animate-blob { animation: blob 16s ease-in-out infinite; }
+}
